@@ -90,7 +90,7 @@
 .info {
   display: flex;
   flex-direction: row;
-  padding: 2em;
+  margin-left: 0.5%;
   align-items: start;
 }
 

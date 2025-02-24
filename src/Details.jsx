@@ -34,7 +34,7 @@ export default function Details({pokeData, goBack}) {
         <h3>Moves</h3>
         <div id='move-wrapper'>
           <ul className="moves">
-            {moves.filter((move, i) => i < 100).map((move, i) => <li key={i} className="move-item">{move.move.name}</li>)}
+            {moves.map((move, i) => <li key={i} className="move-item">{move.move.name}</li>)}
           </ul>
         </div>
       </div>

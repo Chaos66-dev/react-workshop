@@ -20,19 +20,6 @@ function App() {
 
 
   return (
-    // main page components
-      // title
-      // 151 indiv pokemons presented with name and pic
-
-    // indiv pokemon componenets
-      // title
-      // back button
-      // name
-      // img
-      // description
-      // moves
-
-
     <>
     <h1 id="header">Pokedex</h1>
     {selectedPokemon ? (
@@ -46,7 +33,6 @@ function App() {
     )
     }
     </>
-
   )
 }
 

@@ -10,17 +10,33 @@ export default function Details({pokeData, goBack}) {
     const moves = details.moves;
 
     return (<>
-      <div className={`container ${details.types[0].type.name}`}>
-        <div className="name-img">
-          <h1 id={capitalizeFirstChar(details.forms[0].name)}>{capitalizeFirstChar(details.forms[0].name)}</h1>
-          <img src={details.sprites.other.home.front_default} />
+      <button id="goBack-button" onClick={goBack}>Go Back to List</button>
+      <div className={`container`}>
+        <div className="info">
+            <div className="name-img">
+                <h2 id={capitalizeFirstChar(details.forms[0].name)}>{capitalizeFirstChar(details.forms[0].name)}</h2>
+                <img className="detailsImg" src={details.sprites.other.home.front_default} />
+            </div>
+
+            <div className="bio">
+                <h3>Bio</h3>
+                <p>Types: {details.types.map((type, i) => capitalizeFirstChar(type.type.name) + " ")}</p>
+                <p>Height: {details.height*10} centimeters Weight: {details.weight/10} kg</p>
+                <p>Base Stats: {details.stats[0].stat.name}: {details.stats[0].base_stat} {" "}
+                     {details.stats[1].stat.name}: {details.stats[1].base_stat} {" "}
+                     {details.stats[2].stat.name}: {details.stats[2].base_stat} {" "}
+                     {details.stats[3].stat.name}: {details.stats[3].base_stat} {" "}
+                     {details.stats[4].stat.name}: {details.stats[4].base_stat} {" "}
+                     {details.stats[5].stat.name}: {details.stats[5].base_stat} {" "}
+                </p>
+            </div>
         </div>
-        <div className="moves">
-          <ul>
-            {moves.filter((move, i) => i < 10).map((move, i) => <li key={i}>{move.move.name}</li>)}
+        <h3>Moves</h3>
+        <div id='move-wrapper'>
+          <ul className="moves">
+            {moves.filter((move, i) => i < 100).map((move, i) => <li key={i} className="move-item">{move.move.name}</li>)}
           </ul>
         </div>
       </div>
-      <button onClick={goBack}>Go Back</button>
     </>)
   }

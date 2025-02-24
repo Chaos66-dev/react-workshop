@@ -34,6 +34,7 @@ function App() {
 
 
     <>
+    <h1 id="header">Pokedex</h1>
     {selectedPokemon ? (
       <div className="detailspage">
         <Details pokeData={selectedPokemon} goBack={() => setSelectedPokemon(null)}></Details>

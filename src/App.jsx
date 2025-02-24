@@ -1,34 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react';
+import Home from './Home.jsx';
+import Details from './Details.jsx'
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [curr, setCurr] = useState('https://pokeapi.co/api/v2/pokemon?limit=151')
+  const [pokeList, setpokeList] = useState([])
+  const [selectedPokemon, setSelectedPokemon] = useState(null)
+
+
+  useEffect(() => {
+    fetch(curr)
+      .then(res => res.json())
+      .then(data => {
+        setpokeList(data.results)
+      })
+  }, [curr])
+
+
 
   return (
+    // main page components
+      // title
+      // 151 indiv pokemons presented with name and pic
+
+    // indiv pokemon componenets
+      // title
+      // back button
+      // name
+      // img
+      // description
+      // moves
+
+
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    {selectedPokemon ? (
+      <div className="detailspage">
+        <Details pokeData={selectedPokemon} goBack={() => setSelectedPokemon(null)}></Details>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+    ) : (
+      <div className="homepage">
+        <Home pokeList={pokeList} onSelect={setSelectedPokemon}> </Home>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    )
+    }
     </>
+
   )
 }
 

@@ -1,3 +1,6 @@
+import PokeContext from './context/PokeContext.jsx'
+import { useContext, useEffect, useState } from 'react'
+
 
 function capitalizeFirstChar(str) {
     if (!str) return str; // Handle empty string
@@ -5,12 +8,21 @@ function capitalizeFirstChar(str) {
 }
 
 // eslint-disable-next-line react/prop-types
-export default function Details({pokeData, goBack}) {
+export default function Details({pokeData}) {
     const {details} = {details: pokeData, setDetails: () => {}};
     const moves = details.moves;
+    const setPokemon = useContext(PokeContext)
+    const [flavorText, setFlavorText] = useState('')
+
+    useEffect(() => {
+      fetch('https://pokeapi.co/api/v2/pokemon-species/' + details.id)
+                    .then(res => res.json())
+                    .then(data => setFlavorText(data.flavor_text_entries[0].flavor_text))
+    }, [])
 
     return (<>
-      <button id="goBack-button" onClick={goBack}>Go Back to List</button>
+    <PokeContext>
+      <button id="goBack-button" onClick={() => setPokemon(null)}>Go Back to List</button>
       <div className={`container`}>
         <div className="info">
             <div className="name-img">
@@ -20,6 +32,7 @@ export default function Details({pokeData, goBack}) {
 
             <div className="bio">
                 <h3>Bio</h3>
+                <p>{flavorText}</p>
                 <p>Types: {details.types.map((type, i) => capitalizeFirstChar(type.type.name) + " ")}</p>
                 <p>Height: {details.height*10} centimeters Weight: {details.weight/10} kg</p>
                 <p>Base Stats: {details.stats[0].stat.name}: {details.stats[0].base_stat} {" "}
@@ -38,5 +51,6 @@ export default function Details({pokeData, goBack}) {
           </ul>
         </div>
       </div>
+    </PokeContext>
     </>)
   }

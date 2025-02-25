@@ -4,6 +4,8 @@
   color: black;
 }
 
+
+
 .header {
   padding-left: 10px;
 }
@@ -47,6 +49,10 @@
   background-color: rgb(232, 232, 232);
   padding: 2em;
   border-radius: 0.5em;
+}
+
+.pokePic:hover {
+  transform: scale(1.2);
 }
 
 #header {
@@ -99,4 +105,9 @@
   padding: 2em;
 }
 
+.loading-icon {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+}
 

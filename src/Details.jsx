@@ -17,7 +17,12 @@ export default function Details({pokeData}) {
     useEffect(() => {
       fetch('https://pokeapi.co/api/v2/pokemon-species/' + details.id)
                     .then(res => res.json())
-                    .then(data => setFlavorText(data.flavor_text_entries[0].flavor_text))
+                    .then(data => {
+                      for(let text of data.flavor_text_entries){
+                        if(text.language.name == 'en')
+                          setFlavorText(text.flavor_text)
+                      }
+                    })
     }, [])
 
     return (<>

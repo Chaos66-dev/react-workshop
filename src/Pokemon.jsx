@@ -19,8 +19,8 @@ function Pokemon({pokeData}) {
 
     // useEffect
     useEffect(() => {
-        // eslint-disable-next-line react/prop-types
         setLoader(true);
+        // eslint-disable-next-line react/prop-types
         fetch(pokeData.url)
         .then(res => res.json())
         .then(data => {

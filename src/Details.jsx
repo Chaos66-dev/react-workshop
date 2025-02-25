@@ -33,7 +33,7 @@ export default function Details({pokeData}) {
             <div className="bio">
                 <h3>Bio</h3>
                 <p>{flavorText}</p>
-                <p>Types: {details.types.map((type, i) => capitalizeFirstChar(type.type.name) + " ")}</p>
+                <p>Types: {details.types.map((type, ) => capitalizeFirstChar(type.type.name) + " ")}</p>
                 <p>Height: {details.height*10} centimeters Weight: {details.weight/10} kg</p>
                 <p>Base Stats: {details.stats[0].stat.name}: {details.stats[0].base_stat} {" "}
                      {details.stats[1].stat.name}: {details.stats[1].base_stat} {" "}
